@@ -1,0 +1,49 @@
+<!--pages/add/add.wxml-->
+<wxs module="filters" src="add.wxs"></wxs>
+
+<view class="container">
+  <text style="padding-top:20rpx;padding-bottom:20rpx;padding-left:20rpx;padding-right:76vw">标题</text>
+  <text size="mini" bindtap="onAdd" style="color:#3CB371;font-weight:bold;">提交</text>
+</view>
+<input class="input" name="userName" placeholder="{{placeholder}}" bindinput="formTitle" value="{{title}}"/>
+<text style="padding-top:20rpx;padding-bottom:20rpx;padding-left:20rpx">是否仅自己可见</text>
+<switch class="switch" checked="{{isChecked}}" bindchange="changeSwitch"/>
+<text style="padding-top:20rpx;padding-bottom:20rpx;padding-left:20rpx">选择专辑</text>
+<view style="padding-left:20rpx;font-size:30rpx;color:#3CB371;" bindtap="chooseAlbum">{{album}}</view>
+<text style="padding-top:20rpx;padding-bottom:20rpx;padding-left:20rpx" >添加图片</text>
+<button type="default" size="mini" bindtap="chooseImage" wx:if="{{images.length < 9}}">添加图片</button>
+<view>
+  <block wx:for="{{images.length%3?filters.toFix(images.length/3)+1:filters.toFix(images.length/3)}}" wx:for-index="i" wx:key="*this">
+    <view class="tablerow">
+    <block wx:for="{{3}}" wx:for-index="j">
+      <view class="item">
+      <block wx:if="{{images[i*3+j]}}">
+      <image class="images" src="{{images[i*3+j]}}" mode="aspectFill" data-idx="{{i*3+j}}" data-image="{{images[i*3+j]}}" bindtap="handleImagePreview"></image>
+      <view class="delete" data-idx="{{i*3+j}}" bindtap="removeImage">删除</view>
+      </block>
+      </view>
+    </block>
+    </view>
+  </block>
+</view>
+<view style="padding-top:60rpx"/>
+<button type="default" size="mini" bindtap="crop" >裁剪封面</button>
+<modal hidden="{{hiddenmodalput}}" title="请选择封面图片" confirm-text="提交" cancel-text="取消" bindcancel="cancel">
+  <block wx:for="{{images.length%3?filters.toFix(images.length/3)+1:filters.toFix(images.length/3)}}" wx:for-index="i" wx:key="*this">
+    <view class="tablerow">
+    <block wx:for="{{3}}" wx:for-index="j">
+      <view class="item">
+      <block wx:if="{{images[i*3+j]}}">
+      <image class="coverimg" src="{{images[i*3+j]}}" mode="aspectFill" data-idx="{{i*3+j}}" data-image="{{images[i*3+j]}}" bindtap="cropthis"></image>
+      </block>
+      </view>
+    </block>
+    </view>
+  </block>
+</modal>
+<image class="images" src="{{newImage}}" mode="aspectFill" bindtap="handleNewImage"></image>
+<view wx:if="{{newImage}}" class="delete" bindtap="removeNewImage">删除</view>
+
+<modal hidden="{{newAlbum}}" title="请输入专辑名" confirm-text="提交" cancel-text="重置" bindcancel="cancel" bindconfirm="confirm">  
+    <input type='text'placeholder="请输入内容" bindinput="inputAlbumName" auto-focus/>  
+</modal> 

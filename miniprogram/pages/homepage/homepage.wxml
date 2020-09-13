@@ -1,0 +1,23 @@
+<!--pages/homepage/homepage.wxml-->
+<view class="back">
+<image class="image" src="{{image}}"/>
+<text class="name">{{name}}</text>
+<button wx:if="{{(!openid==useropenid)&&(!follow)}}" class="btn" type="default" size="mini" bindtap="follow">关注</button>
+<button wx:if="{{follow}}" class="btn" type="default" size="mini" bindtap="unfollow">取消关注</button>
+</view>
+<block wx:for="{{albums.length%2?albums.length/2:(albums.length+1)/2}}" wx:for-index="i">
+  <view class="albumrow">
+  <block wx:for="{{2}}" wx:for-index="j"> 
+    <block wx:if="{{albums[i*2+j]}}">
+    <view class="album" bindtap="toalbum" bindlongtap="edit" data-index="{{i*2+j}}">
+      <image class="albumimg" src="{{albums[i*2+j].cover}}"/>
+      <view class="albumname">{{albums[i*2+j].name}}</view>
+    </view>
+    </block>
+  </block>
+  </view>
+</block>
+<view wx:if="{{albums.length==0}}" class="blank">
+  <image src="/images/albumblank.png" class="blank-image"/>
+  <text class="blank-text">还没有发表任何作品专辑</text>
+</view>

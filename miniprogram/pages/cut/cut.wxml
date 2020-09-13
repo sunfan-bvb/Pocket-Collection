@@ -1,0 +1,17 @@
+<!--pages/cut/cut.wxml-->
+<!--<button type="default" class="btn" bindtap="generate">确认裁剪</button>-->
+<button type="default" class="btn" bindtap="generate">确认裁剪</button>
+
+<veiw class="top" style="width:100%;height:30vh;"/>
+<view class="alert-mask" style="width:100%;height:{{h}}vh"/>
+<image class="image" src="{{image}}" bindload="imageload" hidden="true"/>
+<view wx:if="{{toshoww}}">
+<scroll-view scroll-x="true" class="swiperImgList">
+<image class="ximage" src="{{image}}" style="width:{{viewWidth}}rpx;height:35vh;" bindtouchstart="onTouchStart" bindtouchend="onTouchEnd"/>
+</scroll-view>
+</view>
+<view wx:if="{{toshowh}}">
+<image class="image" src="{{image}}" mode="widthFix" style="width:100%"/>
+</view>
+<view class="alert-mask1" style="height:{{h2}}vh;top:{{h1}}vh"/>
+<canvas canvas-id="myCanvas_A" style="width:100%;height:35vh;"></canvas>

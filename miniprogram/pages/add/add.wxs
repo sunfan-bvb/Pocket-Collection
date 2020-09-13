@@ -1,0 +1,8 @@
+var filters = {
+  toFix: function (value) {
+    return parseInt(value);  //此处为获取整数，不进行四舍五入操作
+  }
+}
+module.exports = {
+  toFix: filters.toFix,
+}

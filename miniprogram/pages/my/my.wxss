@@ -1,0 +1,83 @@
+/* miniprogram/pages/my.wxss */
+.avatar{
+  height: 15vh;
+  width: 15vh;
+  margin-top: 5vh;
+  border-radius: 50%;
+}
+
+.listview-loader{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #36ab60;
+  font-size: initial;
+  width:100vw;
+  height: 35vh;
+}
+
+.name{
+  font-weight: bold;
+  color: #fff;
+  padding-top: 1vh;
+}
+
+.album{
+  background-color: white;
+  width:40vw;
+  height: 50vw;
+  margin-left: 5vw;
+  margin-right: 5vw;
+  margin-top: 5vw;
+}
+
+.albumimg{
+  width:30vw;
+  margin-left:5vw;
+  height: 30vw;
+  padding-top:5vw
+}
+
+.albumname{
+  text-align: center;
+  font-size: smaller;
+  padding-top:3vw;
+}
+
+.albumrow{
+  display : flex;
+  flex-flow: row;
+  width: 100%;
+}
+
+.navback{
+  width: 100%;
+  background-color: white;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align: center;
+}
+
+.nav{
+  padding-left: 15vw;
+  padding-right: 15vw;
+}
+
+.blank{
+  height: 50vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.blank-image{
+  height: 15vw;
+  width: 15vw;
+}
+
+.blank-text{
+  margin-left: 3vw;
+  color: gray;
+  font-weight: bold;
+}

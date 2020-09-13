@@ -1,0 +1,14 @@
+<!--pages/album/album.wxml-->
+<view class="listview-loader" wx:for="{{works}}" data-index="{{index}}">
+  <image src='{{item.cover}}' mode="aspectFill" style="width:100%;height:35vh;" bindtap="todetail" data-item="{{item}}"/>
+  <view class="info">
+  <view class="author">
+  <image class='author-img' src='{{item.authorimg}}' bindtap="tohomepage"/>
+    <text class="text-inner">{{item.authorname}}</text>
+  </view>
+  <view class="text">
+  <text class="text-inner">{{item.title}}</text>
+  <text class="text-inner">{{item.date}}</text>
+  </view>
+  </view>
+</view>

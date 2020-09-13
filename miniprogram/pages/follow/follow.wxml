@@ -1,0 +1,11 @@
+<!--pages/follow/follow.wxml-->
+<view wx:if="{{follows.length==0}}" class="blank">
+  <image src="/images/blank.png" class="blank-image"/>
+  <text class="blank-text">空空如也！</text>
+</view>
+<block wx:for="{{follows.length}}">
+<view class="followback">
+  <image src="{{follows[index].followedimage}}" class="image"  bindtap="tohomepage" data-index="{{index}}"/>
+  <text class="text">{{follows[index].followedname}}</text>
+</view>
+</block>

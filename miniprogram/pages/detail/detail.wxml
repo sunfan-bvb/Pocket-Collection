@@ -1,0 +1,37 @@
+<!--pages/detail/detail.wxml-->
+<view class="back">
+<view class="author">
+  <image class="author-img" src="{{work.authorimg}}"></image>
+  <text>{{work.authorname}}</text>
+</view>
+<view class="inner">
+  <view style="padding-top:20rpx;">{{work.title}}</view>
+</view>
+<view class="imgborder">
+<block wx:for="{{work.images.length}}" class="images">
+    <image src='{{work.images[index]}}' mode="aspectFill" class="image" bindtap="previewImage"/>
+</block>
+</view>
+<view class="bottom">
+  <view class="title">{{work.date}}</view>
+  <view wx:if="{{work._openid==openid}}" class="delete" bindtap="delete">删除</view>
+</view>
+<view class="bottom-icon">
+<image src="{{collect?'/images/collect-2.png':'/images/collect.png'}}" class="icon-collect" bindtap="collect"/>
+<image src="{{like?'/images/like-2.png':'/images/like.png'}}" class="icon-like" bindtap="like"/>
+<text class="icon-like-text" wx:if="{{!likenumber==0}}">{{likenumber}}</text>
+</view>
+</view>
+<view class="commentback">
+  <input class="comment" placeholder="在这里写下你的评论" bindinput="commentinput" value="{{comment}}"/>
+  <button type="default" size="mini" bindtap="comment">评论</button>
+</view>
+<block wx:for="{{comments.length}}">
+  <view class="siglecommentback">
+  <text class="name">{{comments[index].authorname}}</text>
+  <text class="content">{{comments[index].comment}}</text>
+  <text wx:if="{{comments[index]._openid==openid}}" class="deletecomment" bindtap="deletecomment" data-id="{{comments[index]._id}}">删除</text>
+  </view>
+</block>
+<view style="height:2vh"></view>
+  

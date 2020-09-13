@@ -1,0 +1,31 @@
+<!--miniprogram/pages/my.wxml-->
+<view class="listview-loader">
+  <image  class="avatar" src="{{userimage}}"/>
+  <view class="name">{{username}}</view>
+</view>
+<view>
+</view>
+<view class="navback">
+  <text bindtap="tofollow">关注</text>
+  <text class="nav" bindtap="tofans">粉丝</text>
+  <text bindtap="tocollect">收藏</text>
+</view>
+<block wx:for="{{albums.length%2?albums.length/2:(albums.length+1)/2}}" wx:for-index="i">
+  <view class="albumrow">
+  <block wx:for="{{2}}" wx:for-index="j"> 
+    <block wx:if="{{albums[i*2+j]}}">
+    <view class="album" bindtap="toalbum" bindlongtap="edit" data-index="{{i*2+j}}">
+      <image class="albumimg" mode="aspectFill" src="{{albums[i*2+j].cover}}"/>
+      <view class="albumname">{{albums[i*2+j].name}}</view>
+    </view>
+    </block>
+  </block>
+  </view>
+</block>
+<modal hidden="{{hidden}}" title="请输入专辑名" confirm-text="提交" cancel-text="取消" bindcancel="cancel" bindconfirm="confirm">  
+    <input type='text'placeholder="请输入内容" bindinput="inputAlbumName" auto-focus/>  
+</modal> 
+<view wx:if="{{albums.length==0}}" class="blank">
+  <image src="/images/albumblank.png" class="blank-image"/>
+  <text class="blank-text">还没有发表任何作品专辑</text>
+</view>
