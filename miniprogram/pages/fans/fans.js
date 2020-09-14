@@ -8,11 +8,14 @@ Page({
     this.setData({
       openid:app.globalData.openid
     })
-    db.collection("follow").where({
-      followedId:this.data.openid
-    }).get().then(res=>{
+    wx.cloud.callFunction({
+      name:"getfollower",
+      data:{
+        openid:this.data.openid
+      }
+    }).then(res=>{
       this.setData({
-        follows:res.data
+        follows:res.result.data
       })
     })
   },
