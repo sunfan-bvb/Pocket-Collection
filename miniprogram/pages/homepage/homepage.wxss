@@ -20,9 +20,15 @@
   padding-left:3vh;
 }
 .btn{
-  height: 7vh;
   width:10vh;
-  margin-top: 6.5vh;
+  height: min-content;
+  margin-left: 30vw;
+}
+.btn-content{
+  display: flex;
+  align-items: center;
+  justify-content: right;
+  margin-right: 5vw;
 }
 .album{
   background-color: white;

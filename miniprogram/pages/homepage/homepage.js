@@ -19,13 +19,16 @@ Page({
         })
       })
     }else{
-      var item = app.globalData.item;
+      var item = app.globalData.item;      
       this.setData({
         image:item.authorimg,
         name:item.authorname,
-        openid:item.openid,
+        openid:item._openid,
         useropenid:app.globalData.openid
       })
+      console.log(this.data.openid);
+      console.log(this.data.useropenid);
+      
     }
     db.collection("album").where({
       _openid:this.data.openid
@@ -49,6 +52,7 @@ Page({
         })
       }
     })
+    console.log(this.data.follow);
   },
   follow(){
     db.collection("follow").add({
@@ -104,7 +108,7 @@ Page({
   },
   onReachBottom(){
     db.collection("album").where({
-      _openid:item.openid
+      _openid:this.data.openid
     }).skip(skip).get().then(res=>{
       let items = res.data
       items.map(item=>{

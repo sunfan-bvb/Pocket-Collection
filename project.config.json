@@ -2,7 +2,7 @@
 	"miniprogramRoot": "miniprogram/",
 	"cloudfunctionRoot": "cloudfunctions/",
 	"setting": {
-		"urlCheck": false,
+		"urlCheck": true,
 		"es6": true,
 		"enhance": true,
 		"postcss": true,
@@ -81,6 +81,20 @@
 					"id": -1,
 					"name": "pages/follow/follow",
 					"pathName": "pages/follow/follow",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/hide/hide",
+					"pathName": "pages/hide/hide",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/front/front",
+					"pathName": "pages/front/front",
 					"query": "",
 					"scene": null
 				}

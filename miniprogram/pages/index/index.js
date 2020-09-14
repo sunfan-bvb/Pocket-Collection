@@ -19,12 +19,17 @@ Page({
     wx.showLoading({
       title: '加载中',
     })
-    if(!app.globalData.openid){
+    if(!app.globalData.openid){      
       setTimeout(() => {
-        console.log("wait 1s");
-        this.init()        
-      }, 1000);
-    }
+        wx.showLoading({
+          title: '加载中',
+        })
+        console.log("wait 2s");
+        this.init()
+      }, 2000);
+    }else{      
+      this.init();
+    }    
   },
   onShow:function(){    
     this.setData({
@@ -35,9 +40,6 @@ Page({
     }
   },
   init(){
-    wx.showLoading({
-      title: '加载中',
-    })
     db.collection('follow').where({
       _openid:app.globalData.openid
     }).get().then(res=>{
@@ -45,9 +47,9 @@ Page({
       this.setData({
         follows:follows
       })
-      follows.map(item=>{
+      follows = follows.map(item=>{
         return item.followedId
-      })
+      })      
       db.collection('works').where(_.or([
         {
           _openid:_.in(follows),
@@ -205,5 +207,10 @@ Page({
       title: "口袋作品集",
       path:`/pages/index/index?url=${url}` 
     }
+  },
+  onPullDownRefresh(){
+    wx.navigateTo({
+      url: '/pages/hide/hide',
+    })
   }
 })

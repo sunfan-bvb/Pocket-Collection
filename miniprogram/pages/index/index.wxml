@@ -3,12 +3,16 @@
   <image class="searchimg" src="/images/search.png" bindtap="search"/>
 </view>
 <image wx:if="{{isSearching}}" src="/images/back.png" class="back" bindtap="back"></image>
-<view wx:if="{{works.length==0}}" class="blank">
+<view wx:if="{{works.length==0&&!isSearching}}" class="blank">
   <image src="/images/blank-1.png" class="blank-image"/>
   <text class="blank-text-1">还什么都没有</text>
   <view class="blank-1">
   <text class="blank-text-1">去</text><text class="blank-text-2" bindtap="add">发表</text>
   </view>
+</view>
+<view wx:if="{{works.length==0&&isSearching}}" class="blank">
+  <image src="/images/none.png" class="blank-image-1"/>
+  <text class="blank-text-1">什么都没有查到</text>
 </view>
 <image src="/images/add.png" class="add" bindtap="add"></image>
 <view class="listview-loader" wx:for="{{works}}" data-index="{{index}}">

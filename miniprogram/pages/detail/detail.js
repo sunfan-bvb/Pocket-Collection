@@ -46,11 +46,22 @@ Page({
         })
       }
     })
-    db.collection("like").where({
+    /*db.collection("like").where({
       wid:this.data.work._id
     }).count().then(res=>{
+      console.log(res.total);
       this.setData({
         likenumber:res.total
+      })
+    })*/
+    wx.cloud.callFunction({
+      name:'getlikenumber',
+      data: {
+        id:this.data.work._id
+      }
+    }).then(result => {
+      this.setData({
+        likenumber:result.result
       })
     })
     this.init()

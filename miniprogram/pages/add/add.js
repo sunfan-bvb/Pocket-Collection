@@ -8,6 +8,8 @@ Page({
     album:'选择专辑',
     newAlbum:true,
     isChecked:false,
+    title:"",
+    newImage:""
   }),
   onLoad: function (options) {   
     if(options.cover){
@@ -107,17 +109,17 @@ Page({
         data: this.data.album,
         key: 'album',
       })
-    }
-    if(this.data.images.length==1){
-      var array = JSON.stringify(this.data.images[0])
-      wx.navigateTo({
-        url: '/pages/cut/cut?image='+array
-      })
-    }
-    else{
-      this.setData({
-        hiddenmodalput:!this.data.hiddenmodalput
-     })
+      if(this.data.images.length==1){
+        var array = JSON.stringify(this.data.images[0])
+        wx.navigateTo({
+          url: '/pages/cut/cut?image='+array
+        })
+      }
+      else{
+        this.setData({
+          hiddenmodalput:!this.data.hiddenmodalput
+       })
+      }
     }
   },
   changeSwitch(){
@@ -151,7 +153,9 @@ Page({
   },
   chooseAlbum(){
     var that=this
-    db.collection('album').get()
+    db.collection('album').where({
+      _openid:app.globalData.openid
+    }).get()
     .then(result => {
       let res = result.data.map(item =>{
         return item.name;

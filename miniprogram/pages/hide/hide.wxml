@@ -1,0 +1,8 @@
+<!--pages/hide/hide.wxml-->
+<image style="width:80vw;height:72vw;margin-left:10vw;" src="/images/hide.png"/>
+<view class="texts">
+<text>如果遇到bug或者想要增加的功能</text>
+<text style="margin-bottom:20px;">欢迎留言</text>
+<textarea bindinput="input" maxlength="-1" style="background-color:white;width:80vw;" value="{{input}}"></textarea>
+</view>
+<button type="primary" size="mini" style="margin-top:20px;margin-bottom:20px;" bindtap="submit">提交</button>

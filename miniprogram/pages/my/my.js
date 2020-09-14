@@ -138,7 +138,7 @@ Page({
   onReachBottom(){
     db.collection('album').where({
       _openid:app.globalData.openid
-    }).sikp(skip).get().then(res=>{      
+    }).skip(skip).get().then(res=>{      
       let items = res.data
       items.map(item=>{
         item.cover=item.cover?(item.cover==""?"images/album.png":item.cover):"/images/album.png"

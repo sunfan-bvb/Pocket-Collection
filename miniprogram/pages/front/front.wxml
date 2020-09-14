@@ -1,0 +1,5 @@
+<!--pages/front/front.wxml-->
+<view class="back">
+<text>授权后使用小程序！</text>
+<button type="primary" bindgetuserinfo="getUserInfo" open-type="getUserInfo">授权</button>
+</view>

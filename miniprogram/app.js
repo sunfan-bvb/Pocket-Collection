@@ -24,17 +24,14 @@ App({
     wx.login({
       success:function(res){
         if(res.code){
-          var appid='wx116d36e23c9650db';
-          var secret='c5dfa21f984b22a8e087deafb1e6f9f7';
-          var l='https://api.weixin.qq.com/sns/jscode2session?appid='+appid+'&secret='+secret+'&js_code='+res.code+'&grant_type=authorization_code';  
-          wx.request({
-            url: l,
-            data:{},
-            success:function(res){
-              console.log(res)
-              var app=getApp()
-              app.globalData.openid=res.data.openid
+          wx.cloud.callFunction({
+            name:'getopenid',
+            data: {
+              code:res.code
             }
+          }).then(result => {
+            var app = getApp()
+            app.globalData.openid = result.result.openid;
           })
         }else{
           console.log('登录失败！'+res.errMsg)
@@ -42,34 +39,32 @@ App({
       }
     })
 
-    wx.getUserInfo({
-      success: function(res) {
-        var app=getApp()
-        var db = wx.cloud.database()
-        app.globalData.username=res.userInfo.nickName;
-        app.globalData.userphoto=res.userInfo.avatarUrl;             
-        db.collection("users").where({
-          _openid:app.globalData.openid
-        }).get().then(res=>{
-          if(res.data.length==0){
-            db.collection("users").add({
-              data:{
-                username:app.globalData.username,
-                userphoto:app.globalData.userphoto
-              }
-            })
-          }else{
-            db.collection("users").where({
-              _openid:app.globalData.openid
-            }).update({
-              data:{
-                username:app.globalData.username,
-                userphoto:app.globalData.userphoto
-              }
-            })
-          }
-        })
+    wx.getSetting({
+      success (res){
+        if (res.authSetting['scope.userInfo']) {
+          wx.getUserInfo({
+            success: function(res) {
+              var app=getApp()
+              var db = wx.cloud.database()
+              app.globalData.username=res.userInfo.nickName;
+              app.globalData.userphoto=res.userInfo.avatarUrl;             
+              db.collection("users").where({
+                _openid:app.globalData.openid
+              }).update({
+                data:{
+                  username:app.globalData.username,
+                  userphoto:app.globalData.userphoto
+                }
+              })
+            }
+          })
+        }else{
+          wx.navigateTo({
+            url: '/pages/front/front',
+          }) 
+        }
       }
     })
+
   }
 })

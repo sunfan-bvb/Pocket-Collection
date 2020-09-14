@@ -18,6 +18,7 @@
   height: 8vw;
   border-radius: 20px;
   background-color: white;
+  align-items: center;
 }
 
 .input{
@@ -88,6 +89,12 @@
 
 .blank-image{
   height: 20vw;
+  width: 30vw;
+  margin-bottom: 5vw;
+}
+
+.blank-image-1{
+  height: 30vw;
   width: 30vw;
   margin-bottom: 5vw;
 }

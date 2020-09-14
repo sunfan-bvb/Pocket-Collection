@@ -1,0 +1,12 @@
+// 云函数入口文件
+const tcb = require('@cloudbase/node-sdk');
+const cloud = tcb.init();
+const db = cloud.database()
+
+// 云函数入口函数
+exports.main = async (event, context) => {
+  let res = await db.collection("like").where({
+    wid:event.id
+  }).count()
+  return res
+}

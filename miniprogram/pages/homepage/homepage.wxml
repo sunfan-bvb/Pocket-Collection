@@ -2,8 +2,10 @@
 <view class="back">
 <image class="image" src="{{image}}"/>
 <text class="name">{{name}}</text>
-<button wx:if="{{(!openid==useropenid)&&(!follow)}}" class="btn" type="default" size="mini" bindtap="follow">关注</button>
+<view class="btn-content">
+<button wx:if="{{(!(openid==useropenid))&&(!follow)}}" class="btn" type="default" size="mini" bindtap="follow">关注</button>
 <button wx:if="{{follow}}" class="btn" type="default" size="mini" bindtap="unfollow">取消关注</button>
+</view>
 </view>
 <block wx:for="{{albums.length%2?albums.length/2:(albums.length+1)/2}}" wx:for-index="i">
   <view class="albumrow">

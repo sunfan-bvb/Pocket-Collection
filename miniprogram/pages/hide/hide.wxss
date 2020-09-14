@@ -1,0 +1,7 @@
+/* pages/hide/hide.wxss */
+.texts{
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  flex-direction: column;
+}

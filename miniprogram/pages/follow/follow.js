@@ -22,9 +22,8 @@ Page({
   },
   tohomepage(e){
     var follow = this.data.follows[e.currentTarget.dataset.index];
-    let item = {authorimg:follow.followedimage, authorname:follow.followedname, openid:follow.followedId}
+    let item = {authorimg:follow.followedimage, authorname:follow.followedname, _openid:follow.followedId}
     app.globalData.item = item;
-    console.log(item);
     wx.navigateTo({
       url: '/pages/homepage/homepage',
     })
