@@ -1,5 +1,10 @@
 <!--miniprogram/pages/my.wxml-->
 <view class="listview-loader">
+  <image src="/images/message.png" class="msg" bindtap="tomessage"/>
+  <view wx:if="{{newMsg}}">
+  <image src="/images/newmessage.png" class="newmsg" bindtap="tomessage"/>
+  </view>
+  <image src="/images/arrow.png" class="arrow" bindtap="toabout"/>
   <image  class="avatar" src="{{userimage}}"/>
   <view class="name">{{username}}</view>
 </view>

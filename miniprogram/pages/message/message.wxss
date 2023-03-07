@@ -1,0 +1,88 @@
+/* pages/message/message.wxss */
+.single{
+  background-color: white;
+  border-bottom: 1px solid #DEDEDE;
+  height: 12vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.col{
+  display: flex;
+  flex-direction: column;
+  margin-left: 1vw;
+}
+
+.image-left{
+  height: 8vh;
+  width: 8vh;
+  margin-left: 1vh;
+  margin-top: 2vh;
+}
+
+.right{
+  display: flex;
+  justify-content: right;
+}
+
+.left{
+  display: flex;
+  justify-content: left;
+}
+
+.image-right{
+  height: 8vh;
+  width: 8vh;
+  margin-right: 1vh;
+  margin-top: 2vh;
+}
+
+.name{
+  font-weight: bold;
+  margin-top: 2vh;
+  width: max-content;
+}
+.content{
+  font-size: small;
+}
+
+.top{
+  width: 50vw;
+  background-color: #FEFEFE;
+  border-right: 1px solid #DEDEDE;
+  color: #5AB36B;
+  font-weight: bold;
+  height: 10vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid #DEDEDE;
+}
+
+.top-back{
+  display: flex;
+  flex-direction: row;
+}
+
+.blank{
+  height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.blank-image{
+  height: 15vw;
+  width: 15vw;
+}
+.blank-text{
+  margin-left: 3vw;
+  color: gray;
+  font-weight: bold;
+}
+
+.new{
+  font: x-small;
+  color: red;
+  padding-left: 2vw;
+}

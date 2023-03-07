@@ -81,3 +81,27 @@
   color: gray;
   font-weight: bold;
 }
+
+.msg{
+  height: 6vw;
+  width: 6vw;
+  position: absolute;
+  top: 3vh;
+  right: 3vh;
+}
+
+.arrow{
+  height: 6vw;
+  width: 6vw;
+  position: absolute;
+  top: 16vh;
+  right: 3vh;
+}
+
+.newmsg{
+  height: 4vw;
+  width: 4vw;
+  position: absolute;
+  top: 2.8vh;
+  right: 2.8vh;
+}

@@ -24,11 +24,12 @@
 .input{
   width:70vw;
   padding-left: 3vw;
+  font-size: small;
 }
 
 .searchimg{
-  width:7vw;
-  height: 7vw;
+  width:6vw;
+  height: 6vw;
   padding-right: 2vw;
 }
 
@@ -119,4 +120,10 @@
 
 .text{
   font-size: small;
+}
+
+.text-content{
+  display: flex;
+  flex-direction: column;
+  justify-content: right;
 }

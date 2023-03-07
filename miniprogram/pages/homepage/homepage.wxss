@@ -6,9 +6,9 @@
   flex-direction: row;
 }
 .image{
-  height: 10vh;
-  width: 10vh;
-  margin-left: 5vw;
+  height: 15vw;
+  width: 15vw;
+  margin-left: 8vw;
   border-radius: 50%;
   margin-top: 5vh;
 }
@@ -17,18 +17,19 @@
   color: #fff;
   display: flex;
   align-items:center;
-  padding-left:3vh;
+  padding-left:4vw;
+  width:20vw;
 }
 .btn{
   width:10vh;
   height: min-content;
-  margin-left: 30vw;
 }
 .btn-content{
   display: flex;
   align-items: center;
   justify-content: right;
   margin-right: 5vw;
+  width:48vw;
 }
 .album{
   background-color: white;

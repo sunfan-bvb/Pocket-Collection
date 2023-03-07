@@ -24,7 +24,6 @@ Page({
         wx.showLoading({
           title: '加载中',
         })
-        console.log("wait 2s");
         this.init()
       }, 2000);
     }else{      
@@ -212,5 +211,5 @@ Page({
     wx.navigateTo({
       url: '/pages/hide/hide',
     })
-  }
+  },
 })

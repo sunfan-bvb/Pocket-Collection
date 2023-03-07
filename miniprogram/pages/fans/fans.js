@@ -3,8 +3,11 @@ const app = getApp()
 const db = wx.cloud.database()
 var skip = 20
 Page({
-
   onLoad: function (options) {
+    wx.setNavigationBarTitle({ title:"粉丝"})
+    wx.showLoading({
+      title: '加载中',
+    })
     this.setData({
       openid:app.globalData.openid
     })
@@ -18,6 +21,7 @@ Page({
         follows:res.result.data
       })
     })
+    wx.hideLoading();
   },
   tohomepage(e){
     var follow = this.data.follows[e.currentTarget.dataset.index];

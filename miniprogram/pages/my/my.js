@@ -5,13 +5,25 @@ var skip = 20
 Page({
   data:{
     hidden:true,
-    arr:[]
+    arr:[],
+    newMsg:false
   },
   onLoad: function (options) {
     this.setData({
       username:app.globalData.username,
       userimage:app.globalData.userphoto,
       arr:[]
+    })
+    db.collection("users").where({
+      _openid:app.globalData.openid
+    }).get().then(res=>{
+      var like = res.data[0].like;
+      var comment = res.data[0].comment;
+      if(like||comment){
+        this.setData({
+          newMsg:true
+        })
+      }
     })
     this.init()
   },
@@ -74,6 +86,7 @@ Page({
                 }
               })
             }
+            that.onLoad()
           })
         }
       }
@@ -156,5 +169,15 @@ Page({
       title: "口袋作品集",
       path:`/pages/index/index?url=${url}` 
     }
+  },
+  tomessage(){
+    wx.navigateTo({
+      url: '/pages/message/message',
+    })
+  },
+  toabout(){
+    wx.navigateTo({
+      url: '/pages/hide/hide',
+    })
   }
 })

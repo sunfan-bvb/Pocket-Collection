@@ -4,6 +4,7 @@ const app = getApp()
 Page({
 
   onLoad: function (options) {
+    wx.setNavigationBarTitle({ title:"收藏"})
     this.beforeinit()
   },
   beforeinit(){

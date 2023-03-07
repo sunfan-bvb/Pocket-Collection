@@ -9,7 +9,7 @@
 </view>
 <view class="imgborder">
 <block wx:for="{{work.images.length}}" class="images">
-    <image src='{{work.images[index]}}' mode="aspectFill" class="image" bindtap="previewImage"/>
+    <image src='{{work.images[index]}}' mode="aspectFill" class="image" data-idx="{{index}}" data-image="{{work.images[index]}}" bindtap="previewImage"/>
 </block>
 </view>
 <view class="bottom">
@@ -27,11 +27,9 @@
   <button type="default" size="mini" bindtap="comment">评论</button>
 </view>
 <block wx:for="{{comments.length}}">
-  <view class="siglecommentback">
+  <view class="siglecommentback" bindlongtap="longtap" data-id="{{comments[index]._id}}" data-index="{{index}}">
   <text class="name">{{comments[index].authorname}}</text>
   <text class="content">{{comments[index].comment}}</text>
-  <text wx:if="{{comments[index]._openid==openid}}" class="deletecomment" bindtap="deletecomment" data-id="{{comments[index]._id}}">删除</text>
   </view>
 </block>
 <view style="height:2vh"></view>
-  

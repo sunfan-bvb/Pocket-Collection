@@ -7,15 +7,22 @@ Page({
     follow:false
   },
   onLoad: function (options) {
+    wx.setNavigationBarTitle({ title:"主页"})
     if(options.openid){
-      db.collection("users").where({
-        _openid:options.openid
-      }).get().then(res=>{
+      console.log(options.openid);
+      this.setData({
+        openid:options.openid
+      })
+      wx.cloud.callFunction({
+        name:"getUser",
+        data:{
+          openid:options.openid
+        }
+      }).then(res=>{
         this.setData({
-          openid:options.openid,
           useropenid:app.globalData.openid,
-          image:res.data[0].userphoto,
-          name:res.data[0].username
+          image:res.result.data[0].userphoto,
+          name:res.result.data[0].username
         })
       })
     }else{
@@ -25,10 +32,7 @@ Page({
         name:item.authorname,
         openid:item._openid,
         useropenid:app.globalData.openid
-      })
-      console.log(this.data.openid);
-      console.log(this.data.useropenid);
-      
+      })      
     }
     db.collection("album").where({
       _openid:this.data.openid
@@ -52,7 +56,6 @@ Page({
         })
       }
     })
-    console.log(this.data.follow);
   },
   follow(){
     db.collection("follow").add({

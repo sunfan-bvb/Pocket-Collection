@@ -9,6 +9,7 @@ Page({
   },
 
   onLoad: function (options) {
+    wx.setNavigationBarTitle({ title:"关注"})
     this.setData({
       openid:app.globalData.openid
     })

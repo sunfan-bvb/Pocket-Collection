@@ -2,13 +2,16 @@
 const app = getApp()
 const db = wx.cloud.database()
 var skip = 20
+const date = new Date()
 Page({
   data:{
     like:false,
     collect:false,
-    likenumber:0
+    likenumber:0,
+    comment:""
   },
   onLoad: function (options) {
+    wx.setNavigationBarTitle({ title:'详情'});
     if(options.itemId){
       db.collection("works").where({
         _id:options.itemId
@@ -46,14 +49,6 @@ Page({
         })
       }
     })
-    /*db.collection("like").where({
-      wid:this.data.work._id
-    }).count().then(res=>{
-      console.log(res.total);
-      this.setData({
-        likenumber:res.total
-      })
-    })*/
     wx.cloud.callFunction({
       name:'getlikenumber',
       data: {
@@ -76,7 +71,7 @@ Page({
     })
   },
   previewImage(e){
-    var current = e.target.dataset.src;
+    var current = e.target.dataset.image;
     wx.previewImage({
       current: current,  
       urls: this.data.work.images
@@ -90,10 +85,20 @@ Page({
       db.collection("like").add({
         data:{
           wid:this.data.work._id,
+          time:date.getTime(),
+          authorname:app.globalData.username,
+          authorimg:app.globalData.userphoto
         }
       })
       this.setData({
         likenumber:this.data.likenumber+1
+      })
+      wx.cloud.callFunction({
+        name:"updateUserLike",
+        data:{
+          openid:this.data.work._openid,
+          like:true
+        }
       })
     }else{
       db.collection("like").where({
@@ -128,17 +133,69 @@ Page({
     })
   },
   comment(){
-    db.collection("comment").add({
-      data:{
-        wid:this.data.work._id,
-        comment:this.data.comment,
-        authorname:app.globalData.username
+    if(this.data.comment==""){
+      wx.showToast({
+        icon:"none",
+        title: '评论不能为空！',
+      })
+    }else{
+      db.collection("comment").add({
+        data:{
+          wid:this.data.work._id,
+          comment:this.data.comment,
+          authorname:app.globalData.username,
+          time:date.getTime(),
+          authorimg:app.globalData.userphoto,
+        },
+        success:res=>{
+          this.setData({
+            comment:""
+          })
+          db.collection("comment").where({
+            wid:this.data.work._id
+          }).get().then(res=>{
+            this.setData({
+              comments:res.data
+            })
+          })
+          console.log(this.data.work._openid);
+          wx.cloud.callFunction({
+            name:"updateUserComment",
+            data:{
+              openid:this.data.work._openid,
+              comment:true
+            }
+          }).then(res=>{
+            console.log(res);
+          })
+        },
+        fail:res=>{
+          wx.showToast({
+            icon:"none",
+            title: '评论失败',
+          })
+        }
+      })
+    }
+  },
+  longtap(e){
+    var that = this
+    var list = []
+    var author = this.data.comments[e.currentTarget.dataset.index]._openid
+    if(author == app.globalData.openid){
+      list = ["删除"];
+    }
+    wx.showActionSheet({  
+      itemList: list,  
+      success: function(res) {  
+          if(res.tapIndex==0){
+            that.deletecomment(e);
+          }
+      },  
+      fail: function(res) {  
+          console.log(res.errMsg)  
       }
-    })
-    this.setData({
-      comment:""
-    })
-    this.init()
+  })  
   },
   deletecomment(e){
     db.collection("comment").where({
@@ -153,9 +210,13 @@ Page({
       content:"确定删除作品？",
       success:function(res){
         if(res.confirm){
+          wx.showLoading({
+            icon:"loading",
+            title: '删除中',
+          })
           var albumid = ""
           db.collection("albuminfo").where({
-            wid:that.data.work._id
+            wid:that.data.work._id,
           }).get().then(res=>{
             db.collection("album").where({
               _id:res.data[0].aid
@@ -166,17 +227,15 @@ Page({
                   aid:res.data[0]._id
                 }).get().then(res=>{
                   console.log(res);
-                  if(res.data.length==0){
+                  if(res.data.length<=1){
                     db.collection("album").doc(albumid).update({
                       data:{
                         cover:""
                       }
                     })
-                  }else{
-                    console.log("ssssss");
-                    
+                  }else{                    
                     db.collection("works").where({
-                      _id:res.data[0].wid
+                      _id:res.data[1].wid
                     }).get().then(res=>{
                       db.collection("album").doc(albumid).update({
                         data:{
@@ -193,9 +252,11 @@ Page({
             name:'remove',
             data: {
               id: that.data.work._id,
-              openid: that.data.work._openid
+              openid: that.data.work._openid,
+              cover:that.data.work.cover
             }
           }).then(result => {
+            wx.hideLoading();
             if(result){
               wx.showToast({
                 title: '删除成功',

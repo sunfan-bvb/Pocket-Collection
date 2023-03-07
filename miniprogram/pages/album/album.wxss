@@ -44,3 +44,49 @@
 .text-inner{
   font-size: small;
 }
+
+.icon-back-1{
+  margin-left: 21vw;
+  margin-top: 1vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-items: center;
+}
+
+.icon-back-2{
+  margin-left: 40vw;
+  margin-top: 1vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-items: center;
+}
+
+.icon{
+  width: 20px;
+  height: 22px;
+  margin-bottom: 0.5vh;
+}
+
+.icon-text-2{
+  font-size: small;
+  color: #5AB36B;
+}
+
+.icon-text-1{
+  font-size: small;
+  color: #D93A2F;
+}
+
+.bottom-back{
+  position: fixed;
+  bottom: 0px;
+  width:100vw;
+  background-color: white;
+  border-top: 0.5px solid gray;
+  height: 10vh;
+  display: flex;
+  flex-direction: row;
+  justify-items: center;
+}

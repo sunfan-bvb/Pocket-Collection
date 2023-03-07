@@ -84,27 +84,26 @@
   background-color: white;
   margin-top: 2vh;
   display: flex;
-  flex-direction: row;
-  /*height: 10vh;*/
+  flex-direction: column;
   display: flex;
-  align-items: center;
-  padding-top: 3vh;
-  padding-bottom: 3vh;
+  justify-items: left;
+  padding-top: 2vh;
+  padding-bottom: 2vh;
 }
 .name{
   color: #56AC61;
   font-weight: bold;
   margin-left: 5vw;
-  width:10vw;
+  width:fit-content;
+  font-size: 0.9rem;
 }
 .content{
   margin-left: 5vw;
-  width:65vw;
+  margin-right: 5vw;
+  font-size: 0.8rem;
 }
 .deletecomment{
-  right: 0%;
   color: red;
   font-size: smaller;
-  width: 10vw;  
-  margin-left: 3vw;
+  margin-left: 5vw;
 }

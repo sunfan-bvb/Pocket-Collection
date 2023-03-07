@@ -1,5 +1,6 @@
 <!--pages/front/front.wxml-->
 <view class="back">
+<image src="/images/authorize.png"/>
 <text>授权后使用小程序！</text>
 <button type="primary" bindgetuserinfo="getUserInfo" open-type="getUserInfo">授权</button>
 </view>

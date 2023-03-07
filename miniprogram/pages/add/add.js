@@ -12,6 +12,7 @@ Page({
     newImage:""
   }),
   onLoad: function (options) {   
+    wx.setNavigationBarTitle({ title:"发布"});
     if(options.cover){
       var image = JSON.parse(options.cover)
       this.setData({

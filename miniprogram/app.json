@@ -11,7 +11,8 @@
     "pages/collect/collect",
     "pages/album/album",
     "pages/hide/hide",
-    "pages/front/front"
+    "pages/front/front",
+    "pages/message/message"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",
@@ -19,8 +20,7 @@
     "navigationBarBackgroundColor": "#F6F6F6",
     "navigationBarTitleText": "口袋作品集",
     "navigationBarTextStyle": "black",
-    "onReachBottomDistance": 50,
-    "enablePullDownRefresh":true
+    "onReachBottomDistance": 50
   },
   "tabBar": {
     "color": "#666666",

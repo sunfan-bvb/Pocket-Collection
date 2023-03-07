@@ -1,0 +1,29 @@
+<!--pages/message/message.wxml-->
+<view class="top-back">
+<view class="top" bindtap="tolike">
+  <text>我的赞</text>
+  <!--<text wx:if="{{newlike}}" class="new">new</text>-->
+</view>
+<view class="top" bindtap="tocomment">
+  <text>我的评论</text>
+  <!--<text wx:if="{{newcomment}}" class="new">new</text>-->
+</view>
+</view>
+<view wx:if="{{data.length==0}}" class="blank">
+  <image src="/images/blank.png" class="blank-image"/>
+  <text class="blank-text">空空如也！</text>
+</view>
+<view wx:for="{{data.length}}">
+  <view class="single" bindtap="todetail" data-index="{{index}}">
+  <view class="left">
+  <image src="{{data[index].photo}}" class="image-left"/>
+  <view class="col">
+    <text class="name">{{data[index].name}}</text>
+    <text class="content">{{data[index].content}}</text>
+  </view>
+  </view>
+  <view class="right">
+    <image src="{{data[index].cover}}" class="image-right"/>
+  </view>
+  </view>
+</view>

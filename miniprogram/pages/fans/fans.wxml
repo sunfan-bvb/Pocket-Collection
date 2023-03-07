@@ -4,8 +4,8 @@
   <text class="blank-text">空空如也！</text>
 </view>
 <block wx:for="{{follows.length}}">
-<view class="followback">
-  <image src="{{follows[index].followerimage}}" class="image" bindtap="tohomepage" data-index="{{index}}"/>
+<view class="followback" bindtap="tohomepage" data-index="{{index}}">
+  <image src="{{follows[index].followerimage}}" class="image"/>
   <text class="text">{{follows[index].followername}}</text>
 </view>
 </block>

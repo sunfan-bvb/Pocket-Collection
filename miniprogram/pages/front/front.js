@@ -4,6 +4,7 @@ const db = wx.cloud.database()
 Page({
   getUserInfo(e){
     console.log(e.detail.userInfo);
+    wx.setNavigationBarTitle({ title:"授权"})
     if(e.detail.userInfo){
       var authorname = e.detail.userInfo.nickName;
       var authorimg = e.detail.userInfo.avatarUrl;

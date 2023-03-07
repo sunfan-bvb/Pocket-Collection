@@ -22,7 +22,7 @@
   <image class='author-img' src='{{item.authorimg}}' bindtap="tohomepage" data-item="{{item}}"/>
     <text class="text">{{item.authorname}}</text>
   </view>
-  <view class="text">
+  <view class="text-content">
   <text class="text">{{item.title}}</text>
   <text class="text">{{item.date}}</text>
   </view>

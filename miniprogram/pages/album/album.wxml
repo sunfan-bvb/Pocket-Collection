@@ -12,3 +12,17 @@
   </view>
   </view>
 </view>
+<view wx:if="{{openid==useropenid}}" style="height:10vh"/>
+<view wx:if="{{openid==useropenid}}" class="bottom-back">
+<view class="icon-back-1" bindtap="delete">
+<image src="/images/delete.png" class="icon"/>
+<text class="icon-text-1">删除</text>
+</view>
+<view class="icon-back-2" bindtap="rename">
+<image src="/images/rename.png" class="icon"/>
+<text class="icon-text-2">重命名</text>
+</view>
+</view>
+<modal hidden="{{hidden}}" title="请输入专辑名" confirm-text="提交" cancel-text="取消" bindcancel="cancel" bindconfirm="confirm">  
+    <input type='text'placeholder="请输入内容" bindinput="inputAlbumName" auto-focus/>  
+</modal> 

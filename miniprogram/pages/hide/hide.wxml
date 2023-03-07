@@ -6,3 +6,9 @@
 <textarea bindinput="input" maxlength="-1" style="background-color:white;width:80vw;" value="{{input}}"></textarea>
 </view>
 <button type="primary" size="mini" style="margin-top:20px;margin-bottom:20px;" bindtap="submit">提交</button>
+<view class="texts">
+<text style="margin-top:20px;">*现在消息提醒还有bug</text>
+<text>只能读取前20条数据</text>
+<text>但是没时间改了先用着吧</text>
+<text style="margin-bottom:20px;">下次改</text>
+</view>

@@ -1,17 +1,8 @@
 // pages/cut/cut.js
 Page({
 
-  /**
-   * 页面的初始数据
-   */
-  data: {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad: function (options) {
+    wx.setNavigationBarTitle({ title:"裁剪封面"})
     var image = JSON.parse(options.image)
     this.setData({
       image:image
@@ -127,66 +118,8 @@ Page({
             wx.navigateTo({
               url: '/pages/add/add?cover='+array
             })
-            /*wx.cloud.uploadFile({
-              cloudPath: "img/" + new Date().getTime() +"-cover",//云储存的路径及文件名
-              filePath : newImage, //要上传的图片/文件路径 这里使用的是选择图片返回的临时地址
-              success : (uploadres) => { //上传图片到云储存成功
-                wx.showLoading({ //显示加载提示框 不会自动关闭 只能wx.hideLoading关闭
-                  title : "图片上传中", //提示框显示的提示信息
-                  mask : true, //显示透明蒙层，防止触摸。为true提示的时候不可以对屏幕进行操作，不写或为false时可以操作屏幕
-                  success : function () {
-                      wx.hideLoading() //让提示框隐藏、消失
-                      wx.navigateTo({
-                        url: '/pages/add/add?newImage='+array+"&newFileID="+uploadres.fileID
-                      })
-                  }
-                });
-              },
-              fail : (err) => {
-                console.log(err)
-              }
-            })*/
           }
-        })
-      //}, 1000)
-    /*}
-    if(this.data.src==1){
-      //setTimeout(function(){//给延时是因为canvas画图需要时间
-        wx.canvasToTempFilePath({//调用方法，开始截取
-          x: 0,
-          y: 0,
-          width: winWidth,
-          height: winHeight*0.35,
-          destWidth: winWidth,
-          destHeight: winHeight*0.35,
-          canvasId: 'myCanvas_A',
-          success: function (res) {
-            var newImage=res.tempFilePath;
-            var array = JSON.stringify(newImage)
-            wx.cloud.uploadFile({
-              cloudPath: "img/" + new Date().getTime() +"-cover",//云储存的路径及文件名
-              filePath : newImage, //要上传的图片/文件路径 这里使用的是选择图片返回的临时地址
-              success : (uploadres) => { //上传图片到云储存成功
-                wx.showLoading({ //显示加载提示框 不会自动关闭 只能wx.hideLoading关闭
-                  title : "图片上传中", //提示框显示的提示信息
-                  mask : true, //显示透明蒙层，防止触摸。为true提示的时候不可以对屏幕进行操作，不写或为false时可以操作屏幕
-                  success : function () {
-                      wx.hideLoading() //让提示框隐藏、消失
-                      wx.navigateTo({
-                        url: '/pages/updateItem/updateItem?newImage='+array+"&newFileID="+uploadres.fileID
-                      })
-                  }
-                });
-              },
-              fail : (err) => {
-                console.log(err)
-              }
-            })
-          }
-        })
-      //}, 1000)
-    }*/
-    
+        })    
   },
   onPageXScroll:function(e){
     var query = wx.createSelectorQuery();
